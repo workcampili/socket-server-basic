@@ -11,9 +11,9 @@
 </head>
 
 <body class="container">
-    <h1 class="mt-5">MiniChat</h1>
+    <h1 class="mt-5">Acceso denegado</h1>
     <hr>
-    <form id="miFormulario" action="">
+    <!-- <form id="miFormulario" action="">
         <div class="row">
             <div class="col-8">
                 <input type="text" id="txtMensaje" placeholder="Mensaje" class="form-control">
@@ -29,32 +29,36 @@
             </ul>
             </col>
         </div>
-    </form>
+    </form> -->
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"
         integrity="sha512-iZIBSs+gDyTH0ZhUem9eQ1t4DcEn2B9lHxfRMeGQhyNdSUz+rb+5A3ummX6DQTOIs1XK0gOteOg/LPtSo9VJ+w=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        //const socket = io('http://localhost:8080');
-        const socket = io('https://react-socket-server-edu.herokuapp.com/')
+        const socket = io('http://localhost:8080');
+        //const socket = io('https://react-socket-server-edu.herokuapp.com/')
         // referencias a elementos del DOM
-        const formulario = document.querySelector('#miFormulario');
-        const mensajes = document.querySelector('#misMensajes');
-        const txtMensaje = document.querySelector('#txtMensaje')
+        // const formulario = document.querySelector('#miFormulario');
+        // const mensajes = document.querySelector('#misMensajes');
+        // const txtMensaje = document.querySelector('#txtMensaje')
 
-        formulario.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const nuevoMensaje = txtMensaje.value;
-            // envia datos al servidor
-            socket.emit('mensaje-to-server', { texto: nuevoMensaje })
+        // formulario.addEventListener('submit', (e) => {
+        //     e.preventDefault();
+        //     const nuevoMensaje = txtMensaje.value;
+        //     // envia datos al servidor
+        //     socket.emit('mensaje-to-server', { texto: nuevoMensaje })
 
+        // })
+
+        socket.on('connect', () => {
+            console.log('conectado')
         })
 
         // escucha lo que viene del server
         socket.on('mensaje-from-server', (data) => {
             console.log(data)
-            mensajes.innerHTML += `<li>${data.texto}</li>`
+            //mensajes.innerHTML += `<li>${data.texto}</li>`
         })
 
 
